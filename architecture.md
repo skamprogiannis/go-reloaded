@@ -79,15 +79,3 @@ After the loop finishes, join the `Buffer` into a single string (handling the sp
 4.  **Action:** Group logic -> Append directly. -> `["I", "think.."]`
     **Next Token:** `.`
 5.  **Action:** -> `["I", "think..."]`
-
-## ASCII Fallback Diagram
-
-```text
-Input Stream:  "Word"  ->  "(up)"  ->  ","  ->  "Next"
-                  |           |         |
-                  v           v         v
-[ BUFFER ]      [Word]      [WORD]    [WORD,]     Flushed to Output
-                  ^           ^         ^
-                  |           |         |
-             (Normal)    (Transform) (Attach)
-```

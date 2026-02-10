@@ -1,29 +1,50 @@
 AI Usage Index - Task Decomposition
 
-Model: gemini-3-flash-preview
 Date: 2026-02-10
 
 Session Context:
-User requested to prepare for Week 1 Peer Audit by completing task decomposition and fixing documentation.
+Preparation for Week 1 Peer Audit: task decomposition, documentation fixes, and AI usage tracking standardization.
 
 Log entries:
 
+0. Task: High-Level Planning & Task Breakdown
+   - Model: gemini-3-pro-preview (Plan Agent) via OpenCode
+   - Asked: "Help me decompose the project into individual tasks based on the PRD and architecture, ensuring each task is actionable and testable."
+   - Action: AI analyzed requirements and proposed a sequence of 8 tasks (TASK-01 to TASK-08).
+   - Affected: Internal planning state.
+
 1. Task: README Features Update
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
    - Asked: "In the readme let's explain what (hex), (up) etc and everything else actually does in Features & Rules."
    - Action: AI synthesized detailed descriptions and examples from PRD.md and injected them into README.md.
    - Copied/Edited: AI-generated content based on project constraints.
 
 2. Task: Architecture Diagram Fix
-   - Asked: "Fix the Data Flow Diagram in architecture.MD... FSM Processor is partially hidden..."
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
+   - Asked: "Fix the Data Flow Diagram in architecture.MD because the FSM Processor is partially hidden in the current rendering."
    - Action: AI simplified Mermaid syntax from graph LR to graph TD to prevent clipping and ensure visibility of internal states.
    - Affected: architecture.md
 
 3. Task: Task Decomposition (TASK-01 to TASK-08)
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
    - Asked: "Proceed with the task recomposition."
    - Action: AI generated 8 distinct task cards following the "Goal/Input/Output/AC/Tests" format specified in message.txt.
    - Affected: /tasks/*.txt
 
 4. Task: Agent Instructions & Finalization
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
    - Asked: "Add to the AGENTS.md file the fact that you should ALWAYS include what we just worked on in the ai directory."
    - Action: AI updated AGENTS.md with the mandatory AI usage tracking rule and prepared the final commit.
    - Affected: AGENTS.md, ai/task-decomposition-index.txt
+
+5. Task: Documentation Polish & Index Correction
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
+   - Asked: "AI usage index doesn't include the Plan agent used with Gemini 3 Pro Preview. Don't use ... in prompts in AI usage index, include whole sentences. Remove the ASCII Fallback Diagram in architecture.MD - the Mermaid one works fine. Remember to include everything we do in the ai dir."
+   - Action: AI updated the AI Usage Index to include the planning phase, expanded prompt sentences, removed redundant diagrams from architecture.md, and logged this session.
+   - Affected: architecture.md, ai/task-decomposition-index.txt
+
+6. Task: Tracking Format Standardization & Commit
+   - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
+   - Asked: "Change how you track model used, do it for every task. So remove the tope Model: gemini-3-flash-preview. Also include the agent as you have done in Model for Task 0. Let's mention that we are using OpenCode. Write about this latest task in the AI folder, add and commit with a conventional commit, push to origin."
+   - Action: Reformatted the usage index to include per-task model/agent tracking, added OpenCode attribution, and finalized the repository state with a commit and push.
+   - Affected: ai/task-decomposition-index.txt
