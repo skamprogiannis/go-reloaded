@@ -1,0 +1,9 @@
+TASK-04: FSM Buffer & Flush Logic
+- Goal: Implement the core loop that iterates through tokens and manages a "Processed Buffer".
+- Inputs: Slice of tokens.
+- Outputs: Final formatted string.
+- Acceptance Criteria:
+  1. Words are appended to buffer with appropriate spacing.
+  2. Buffer can be flushed to a string.
+- Tests:
+  - Input tokens `[Hello, world]` -> Output `Hello world`.

@@ -3,16 +3,19 @@
 This document defines how AI agents should work within the `go-reloaded` repository. Treat these instructions as strict requirements for all tasks.
 
 ## 1. Project Context
+
 - **Goal:** Build a Go CLI tool for text formatting and auto-correction.
 - **Status:** Week 1 (Planning) is complete. Week 2 (Implementation) is starting.
 - **Reference:** Always check `PRD.md` for the single source of truth regarding rules and requirements, and `architecture.md` for algorithm design.
 
 ## 2. Technical Constraints
+
 - **Standard Library Only:** Do NOT use any external packages (no `github.com/...` imports). Use only Go's standard library (e.g., `strings`, `strconv`, `unicode`, `os`).
 - **Go Version:** Assume current stable Go version.
 - **Build:** The project must run with `go run . <input> <output>`.
 
 ## 3. Workflow & Philosophy
+
 - **TDD (Test-Driven Development):**
   1.  Read the requirement (e.g., "Implement hex marker").
   2.  Create/Update a test case in `main_test.go` (or equivalent) that fails.
@@ -25,15 +28,19 @@ This document defines how AI agents should work within the `go-reloaded` reposit
   - If asked to commit, write clear, imperative messages in the convential commit style (e.g., "feat: implement hex marker logic", "fix: correct spacing for quotes").
 
 ## 4. Code Style
+
 - **Formatting:** Code must always be formatted with `gofmt`.
 - **Naming:** Use idiomatic Go naming (CamelCase, short variable names where context is clear, e.g., `i` for index, `r` for reader).
-- **Comments:** Comment *why*, not *what*. Explain complex FSM state transitions.
+- **Comments:** Comment _why_, not _what_. Explain complex FSM state transitions.
 
 ## 5. Safety & Quality
+
 - **File Operations:** Never overwrite the input file unless explicitly told to use the same path for output.
 - **Testing:** Ensure `go test ./...` passes before considering a task complete.
 - **No Hallucinations:** If a rule in the PRD is ambiguous, ask the user for clarification rather than guessing.
 
 ## 6. Interaction
+
+- **AI Usage Tracking:** ALWAYS maintain and update the AI usage log in the `ai/` directory (e.g., `ai/task-decomposition-index.txt`). For every session, record the tool/model used, date, what was asked, what was copied vs. edited, and which task or file was affected.
 - **Brevity:** Be concise. Don't explain Go syntax unless asked.
 - **Proactive:** If you see a missing edge case in the PRD or tests, suggest adding it.

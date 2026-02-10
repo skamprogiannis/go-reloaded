@@ -1,0 +1,10 @@
+TASK-07: Punctuation & Quote Spacing
+- Goal: Implement spacing rules for punctuation and toggle logic for quotes.
+- Inputs: Punctuation and Quote tokens.
+- Outputs: Buffer with corrected spacing (e.g., `word,` instead of `word ,`).
+- Acceptance Criteria:
+  1. Punctuation attaches to previous word.
+  2. Single quotes toggle `InQuote` state to remove internal spaces.
+- Tests:
+  - Input: `hello , world` -> `hello, world`
+  - Input: `' hello '` -> `'hello'`

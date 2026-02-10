@@ -1,0 +1,11 @@
+TASK-06: Case Marker Logic (up, low, cap)
+- Goal: Implement `(up)`, `(low)`, `(cap)` and their numeric variants `(up, N)`.
+- Inputs: Token stream.
+- Outputs: Transformed words in buffer.
+- Acceptance Criteria:
+  1. `word (up)` -> `WORD`.
+  2. `hello world (cap, 2)` -> `Hello World`.
+  3. Correctly handles N words even if punctuated.
+- Tests:
+  - Input: `stop (up)` -> `STOP`
+  - Input: `ready set go (up, 2)` -> `ready SET GO`

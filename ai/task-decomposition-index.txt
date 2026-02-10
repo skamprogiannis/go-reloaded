@@ -1,0 +1,29 @@
+AI Usage Index - Task Decomposition
+
+Model: gemini-3-flash-preview
+Date: 2026-02-10
+
+Session Context:
+User requested to prepare for Week 1 Peer Audit by completing task decomposition and fixing documentation.
+
+Log entries:
+
+1. Task: README Features Update
+   - Asked: "In the readme let's explain what (hex), (up) etc and everything else actually does in Features & Rules."
+   - Action: AI synthesized detailed descriptions and examples from PRD.md and injected them into README.md.
+   - Copied/Edited: AI-generated content based on project constraints.
+
+2. Task: Architecture Diagram Fix
+   - Asked: "Fix the Data Flow Diagram in architecture.MD... FSM Processor is partially hidden..."
+   - Action: AI simplified Mermaid syntax from graph LR to graph TD to prevent clipping and ensure visibility of internal states.
+   - Affected: architecture.md
+
+3. Task: Task Decomposition (TASK-01 to TASK-08)
+   - Asked: "Proceed with the task recomposition."
+   - Action: AI generated 8 distinct task cards following the "Goal/Input/Output/AC/Tests" format specified in message.txt.
+   - Affected: /tasks/*.txt
+
+4. Task: Agent Instructions & Finalization
+   - Asked: "Add to the AGENTS.md file the fact that you should ALWAYS include what we just worked on in the ai directory."
+   - Action: AI updated AGENTS.md with the mandatory AI usage tracking rule and prepared the final commit.
+   - Affected: AGENTS.md, ai/task-decomposition-index.txt

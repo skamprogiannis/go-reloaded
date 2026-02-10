@@ -1,0 +1,9 @@
+TASK-02: Test Infrastructure (Golden Tests)
+- Goal: Implement a test runner in `main_test.go` that reads from a `testdata/` directory.
+- Inputs: Pairs of `.txt` (input) and `.golden` (expected) files.
+- Outputs: Test pass/fail status with diffs for failures.
+- Acceptance Criteria:
+  1. `go test ./...` automatically picks up new files in `testdata/`.
+  2. A "dummy" test case passes.
+- Tests:
+  - Create `testdata/simple.txt` and `testdata/simple.golden` -> Run `go test`.

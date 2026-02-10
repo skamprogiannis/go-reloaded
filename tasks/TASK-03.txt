@@ -1,0 +1,11 @@
+TASK-03: Tokenizer Implementation
+- Goal: Implement a scanner that breaks raw text into meaningful tokens (words, punctuation, markers).
+- Inputs: Raw string.
+- Outputs: Slice of Token structs (Value string, Type enum).
+- Acceptance Criteria:
+  1. Correctly identifies punctuation groups (e.g., `...`, `!?`).
+  2. Separates markers like `(up, 2)` from surrounding words.
+  3. Preserves newlines.
+- Tests:
+  - Input: `Hello, world (up)!` -> Tokens: `[Hello, ,,  , world,  , (up), !]`
+  - Input: `Wait... what?!` -> Tokens: `[Wait, ...,  , what, ?!]`

@@ -1,0 +1,11 @@
+TASK-08: Grammar (a -> an) & Final Review
+- Goal: Implement the `a` vs `an` logic and perform a full suite verification.
+- Inputs: Words starting with `a`.
+- Outputs: `a` or `an` based on following word.
+- Acceptance Criteria:
+  1. `a apple` -> `an apple`.
+  2. `a hour` -> `an hour`.
+  3. All audit cases in PRD pass.
+- Tests:
+  - Input: `a amazing` -> `an amazing`
+  - Input: `a Honest` -> `an Honest`

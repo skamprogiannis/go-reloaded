@@ -1,0 +1,11 @@
+TASK-01: CLI Skeleton & I/O Handling
+- Goal: Create the main entry point that handles command-line arguments and file reading/writing.
+- Inputs: Two string arguments (input file path, output file path).
+- Outputs: Reads content from input, writes raw content (initially) to output.
+- Acceptance Criteria:
+  1. `go run . sample.txt result.txt` creates `result.txt` with exact content of `sample.txt`.
+  2. Prints usage message if args are missing.
+  3. Errors gracefully if input file is missing.
+- Tests:
+  - Run with 0 args -> Check stdout for usage.
+  - Run with valid file -> Check if output file exists and matches input.

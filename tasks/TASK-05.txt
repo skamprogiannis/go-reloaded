@@ -1,0 +1,11 @@
+TASK-05: Numerical Marker Logic (hex, bin)
+- Goal: Implement `(hex)` and `(bin)` transformations within the FSM.
+- Inputs: Token stream containing markers.
+- Outputs: Buffer with converted decimal values.
+- Acceptance Criteria:
+  1. `1E (hex)` becomes `30`.
+  2. `10 (bin)` becomes `2`.
+  3. Marker is removed from final output.
+- Tests:
+  - Input: `0x1E (hex)` -> Output: `30`
+  - Input: `10 (bin)` -> Output: `2`
