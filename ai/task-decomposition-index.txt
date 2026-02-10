@@ -67,3 +67,4 @@ Log entries:
    - Action: Refactored this log file to match the previous block style instead of the one-line log style. Explained file separation. Committed code.
    - Affected: ai/task-decomposition-index.txt
 Tue 10 Feb 18:48:41 EET 2026 | gemini-3-pro-preview | Build Mode | Fix AI index and explain audit_test.go | ai/task-decomposition-index.txt
+Tue 10 Feb 18:53:02 EET 2026 | gemini-3-pro-preview | Build Mode | Remove verbose comments and update AGENTS.md | fsm.go, AGENTS.md

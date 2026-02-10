@@ -218,32 +218,17 @@ func Process(text string) string {
 		if i > 0 {
 			prev := processedTokens[i-1]
 			if prev == "'" {
-				// We need to know if that prev quote was opening or closing.
-				// Since we iterate sequentially, we can track state.
-				// But we are at `i`. State `inQuote` is current state BEFORE processing `token`.
-				// If `prev` was `'`, and `inQuote` is true, then `prev` MUST have been opening?
-				// Example: `' hello`.
-				// i=0 (`'`). inQuote=false -> true.
-				// i=1 (`hello`). inQuote=true. prev=`'`.
-				// So if prev was quote and we are inQuote, it was opening.
-				// Example: `hello '`.
-				// i=2 (`'`). inQuote=true -> false.
-				// i=3 (`.`). inQuote=false. prev=`'`.
-				// So if prev was quote and we are NOT inQuote, it was closing.
-
 				if inQuote {
 					// Prev was opening
 					addSpace = false
 				}
 			}
 
-			// 4. Previous was newline
 			if processedTokens[i-1] == "\n" {
 				addSpace = false
 			}
 		}
 
-		// 5. Current is newline
 		if isNewline {
 			addSpace = false
 		}

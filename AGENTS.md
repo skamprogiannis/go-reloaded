@@ -31,7 +31,7 @@ This document defines how AI agents should work within the `go-reloaded` reposit
 
 - **Formatting:** Code must always be formatted with `gofmt`.
 - **Naming:** Use idiomatic Go naming (CamelCase, short variable names where context is clear, e.g., `i` for index, `r` for reader).
-- **Comments:** Comment _why_, not _what_. Explain complex FSM state transitions.
+- **Comments:** Comment _why_, not _what_. Explain complex FSM state transitions. Avoid obvious comments (e.g., "Current is newline") or verbose thought processes.
 
 ## 5. Safety & Quality
 
