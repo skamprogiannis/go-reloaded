@@ -3,7 +3,7 @@ AI Usage Index - Task Decomposition
 Date: 2026-02-10
 
 Session Context:
-Preparation for Week 1 Peer Audit: task decomposition, documentation fixes, and AI usage tracking standardization.
+Implementation of go-reloaded project (Week 2).
 
 Log entries:
 
@@ -47,4 +47,16 @@ Log entries:
    - Model: gemini-3-flash-preview (Interactive Agent) via OpenCode
    - Asked: "Change how you track model used, do it for every task. So remove the tope Model: gemini-3-flash-preview. Also include the agent as you have done in Model for Task 0. Let's mention that we are using OpenCode. Write about this latest task in the AI folder, add and commit with a conventional commit, push to origin."
    - Action: Reformatted the usage index to include per-task model/agent tracking, added OpenCode attribution, and finalized the repository state with a commit and push.
+   - Affected: ai/task-decomposition-index.txt
+
+7. Task: Project Implementation (TDD/FSM)
+   - Model: gemini-3-pro-preview (Interactive Agent) via OpenCode
+   - Asked: "Scan the whole repo, make sure you follow AGENTS.md instructions and make a plan to complete the project by writing the Go code, including _test.go files."
+   - Action: Implemented the entire project using TDD. Created main.go (CLI), fsm.go (Logic), and test files. Implemented Tokenizer, Numeric Markers, Style Markers, Punctuation/Quotes/Grammar logic.
+   - Affected: main.go, main_test.go, fsm.go, fsm_test.go, audit_test.go
+
+8. Task: Refactor and Commit
+   - Model: gemini-3-pro-preview (Interactive Agent) via OpenCode
+   - Asked: "Refactor the ai/task-decomposition-index.txt so that your addition match the previous structure. Explain to me why we have 3 separate go files and finally commit with a conventional commit message and push to origin."
+   - Action: Refatted this log file to match the previous block style instead of the one-line log style. Explained file separation. Committed code.
    - Affected: ai/task-decomposition-index.txt
