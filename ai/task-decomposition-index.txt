@@ -75,3 +75,10 @@ Tue 10 Feb 18:53:02 EET 2026 | gemini-3-pro-preview | Build Mode | Remove verbos
    - Action: Rewrote the public-facing README, corrected the architecture document to match the implemented multi-pass pipeline, and added a GitHub Actions quality workflow.
    - Copied/Edited: AI-edited project documentation and CI configuration based on the existing implementation and tests.
    - Affected: README.md, architecture.md, .github/workflows/ci.yml, ai/task-decomposition-index.txt
+
+11. Task: GitHub Actions Runtime Maintenance
+   - Model: Codex via OpenAI Codex
+   - Asked: "Continue polishing the migrated projects after investigating the GitHub Actions notification."
+   - Action: Updated the official checkout and Go setup actions to their current v7 releases, removing deprecated Node 20 action-runtime warnings.
+   - Copied/Edited: AI-edited CI configuration after verifying the official action release metadata.
+   - Affected: .github/workflows/ci.yml, ai/task-decomposition-index.txt
