@@ -1,74 +1,88 @@
-# go-reloaded
+# Go Reloaded
 
-A CLI tool for text formatting, auto-correction, and transformation, written in Go.
+A standard-library Go CLI that cleans assignment-specific text markup into readable prose. It converts binary and hexadecimal values, applies case markers, normalizes punctuation and quotes, and corrects `a` to `an` where required.
 
-## Overview
+## What it demonstrates
 
-`go-reloaded` takes a text file as input, applies a set of formatting rules (hex/bin conversion, casing, punctuation spacing, grammar correction), and outputs the cleaned text to a new file.
+- Unicode-aware tokenization with preserved line breaks
+- Look-behind transformations such as `(up, 3)`, `(cap)`, `(hex)`, and `(bin)`
+- Stateful quote and punctuation reconstruction
+- Separation between file I/O and the pure `Process` transformation
+- Golden audit cases plus focused unit and CLI tests
 
-## Usage
+## Example
 
-```bash
-go run . <input_file> <output_file>
+Input:
+
+```text
+Simply add 42 (hex) and 10 (bin) and you will see the result is 68.
 ```
 
-### Example
+Output:
 
-```bash
-go run . sample.txt result.txt
+```text
+Simply add 66 and 2 and you will see the result is 68.
 ```
 
-## Testing
+## Run it
 
-To run the golden tests (audit cases + extra scenarios):
+Go 1.25 or newer is required.
 
 ```bash
-go test -v ./...
+go run . input.txt output.txt
 ```
 
-## Features & Rules
+The command reads `input.txt`, processes its full contents, and writes the result to `output.txt`.
 
-### 1. Number Conversions
+## Supported rules
 
-- **(hex):** Converts the preceding hexadecimal number to decimal.
-  - _Example:_ `1E (hex) files` -> `30 files`
-- **(bin):** Converts the preceding binary number to decimal.
-  - _Example:_ `It has been 10 (bin) years` -> `It has been 2 years`
+| Marker or rule | Result |
+| --- | --- |
+| `(hex)` / `(bin)` | Converts the preceding hexadecimal or binary token to decimal |
+| `(up)` / `(low)` / `(cap)` | Changes the case of the preceding token |
+| `(up, N)` / `(low, N)` / `(cap, N)` | Changes the case of the preceding `N` tokens |
+| `. , ! ? : ;` | Removes space before punctuation and preserves one separator afterwards |
+| `' quoted text '` | Removes padding inside paired single quotes |
+| `a` before a vowel or `h` | Rewrites the article as `an`, preserving initial capitalization |
 
-### 2. Case Transformations
+Transformation markers are consumed from the output. Unrecognized parenthesized text is kept as ordinary content.
 
-- **(up):** Converts the preceding word to UPPERCASE.
-  - _Example:_ `Ready, set, go (up) !` -> `Ready, set, GO!`
-- **(low):** Converts the preceding word to lowercase.
-  - _Example:_ `I should stop SHOUTING (low)` -> `I should stop shouting`
-- **(cap):** Capitalizes the preceding word (first letter upper, rest lower).
-  - _Example:_ `Welcome to the Brooklyn bridge (cap)` -> `Welcome to the Brooklyn Bridge`
+## Design
 
-You can also specify a number of words to transform:
+Processing is deliberately split into a small pipeline:
 
-- **(up, N), (low, N), (cap, N):** Applies the rule to the previous N words.
-  - _Example:_ `This is so exciting (up, 2)` -> `This is SO EXCITING`
+1. `tokenize` separates words, marker expressions, punctuation groups, quotes, and line breaks.
+2. The marker pass transforms already-seen tokens and removes recognized commands.
+3. The grammar pass applies the assignment's `a`/`an` rule.
+4. The reconstruction pass emits normalized spacing while tracking whether a quote is open.
 
-### 3. Punctuation
+The core transformation is exposed as `Process(string) string`, so behavior can be tested without touching the filesystem. See [architecture.md](architecture.md) for the detailed data flow and [PRD.md](PRD.md) for the original assignment requirements.
 
-- **Spacing:** Punctuation marks (`.`, `,`, `!`, `?`, `:`, `;`) are formatted to have no space before them and one space after them.
-  - _Example:_ `I was sitting over there ,and then BAMM !!` -> `I was sitting over there, and then BAMM!!`
-- **Groups:** Groups of punctuation (like `...` or `!?`) are treated as a single unit.
-  - _Example:_ `I was thinking ... You were right` -> `I was thinking... You were right`
+## Verify it
 
-### 4. Quotes
+```bash
+go test ./...
+go test -race ./...
+go vet ./...
+```
 
-- Single quotes `'` are formatted to remove spaces inside them (sticking to the text they enclose).
-  - _Example:_ `As Elton John said: ' I am the most well-known homosexual in the world '` -> `As Elton John said: 'I am the most well-known homosexual in the world'`
+The test suite covers tokenization, transformations, CLI file handling, the official-style golden cases, and edge cases such as grouped punctuation and multi-word markers.
 
-### 5. Grammar
+## Project layout
 
-- **A -> An:** The indefinite article `a` is changed to `an` if the next word starts with a vowel (`a`, `e`, `i`, `o`, `u`) or `h`.
-  - _Example:_ `There it was. A amazing rock!` -> `There it was. An amazing rock!`
+```text
+.
+├── main.go          # CLI and file I/O
+├── fsm.go           # tokenizer and text-processing pipeline
+├── *_test.go        # unit, CLI, and audit-style tests
+├── PRD.md           # assignment requirements
+└── architecture.md  # implemented design
+```
 
-## Assumptions
+## Author
 
-- The input file is encoded in UTF-8.
-- Markers like `(hex)` apply to the valid word immediately preceding them.
-- If a marker command is invalid (e.g. `(bin)` on a non-binary word), the behavior is to keep the word as is (or as reasonable per the parser).
-- "Word" is defined as a sequence of non-whitespace characters separated by spaces or punctuation boundaries.
+Built by [Stefanos Kamprogiannis](https://github.com/skamprogiannis) during the Zone01 Athens program.
+
+## License
+
+This project is available under the [MIT License](LICENSE).

@@ -68,3 +68,10 @@ Log entries:
    - Affected: ai/task-decomposition-index.txt
 Tue 10 Feb 18:48:41 EET 2026 | gemini-3-pro-preview | Build Mode | Fix AI index and explain audit_test.go | ai/task-decomposition-index.txt
 Tue 10 Feb 18:53:02 EET 2026 | gemini-3-pro-preview | Build Mode | Remove verbose comments and update AGENTS.md | fsm.go, AGENTS.md
+
+10. Task: GitHub Portfolio Polish
+   - Model: Codex via OpenAI Codex
+   - Asked: "Polish all Zone01 repositories before migrating them to GitHub, preserve good history, and update project descriptions and tags where appropriate."
+   - Action: Rewrote the public-facing README, corrected the architecture document to match the implemented multi-pass pipeline, and added a GitHub Actions quality workflow.
+   - Copied/Edited: AI-edited project documentation and CI configuration based on the existing implementation and tests.
+   - Affected: README.md, architecture.md, .github/workflows/ci.yml, ai/task-decomposition-index.txt
